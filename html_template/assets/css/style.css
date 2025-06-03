@@ -1,0 +1,116 @@
+/* SENAI - Sistema de Fichas Técnicas - Estilos principais */
+
+/* Custom variables */
+:root {
+  --primary-color: #ec0000; /* SENAI red */
+  --secondary-color: #E63946;
+  --light-gray: #f8f9fa;
+  --dark-gray: #343a40;
+}
+
+/* Custom global styles */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--light-gray);
+  color: #333;
+}
+
+/* Header & Navigation */
+.navbar-senai {
+  background-color: var(--primary-color);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-senai .navbar-brand {
+  font-weight: 700;
+  color: white;
+}
+
+/* Page Titles */
+.page-title {
+  border-bottom: 2px solid var(--primary-color);
+  padding-bottom: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+/* Card styles */
+.card-vehicle {
+  transition: transform 0.2s ease-in-out;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-vehicle:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+}
+
+.card-vehicle .card-img-top {
+  height: 180px;
+  object-fit: cover;
+}
+
+/* Form styles */
+.form-group label {
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.btn-primary {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+.btn-primary:hover {
+  background-color: #003a8c;
+  border-color: #003a8c;
+}
+
+/* Footer */
+.footer {
+  background-color: var(--dark-gray);
+  color: white;
+  padding: 1.5rem 0;
+  margin-top: 3rem;
+}
+
+/* PDF styles */
+.pdf-container {
+  background-color: white;
+  border: 1px solid #ddd;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+
+/* Vehicle spec details */
+.spec-item {
+  display: flex;
+  border-bottom: 1px solid #eee;
+  padding: 8px 0;
+}
+
+.spec-label {
+  font-weight: 600;
+  width: 150px;
+  color: var(--primary-color);
+}
+
+.spec-value {
+  flex: 1;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .card-vehicle .card-img-top {
+    height: 140px;
+  }
+  
+  .spec-item {
+    flex-direction: column;
+  }
+  
+  .spec-label {
+    width: 100%;
+  }
+}
