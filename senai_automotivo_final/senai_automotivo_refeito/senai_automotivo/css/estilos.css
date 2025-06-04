@@ -1,0 +1,78 @@
+:root {
+    --senai-blue: #0A3871; /* Azul mais escuro */
+    --senai-red: #E31E24;
+    --senai-dark: #1D2939;
+}
+
+.senai-blue { color: var(--senai-blue); }
+.bg-senai-blue { background-color: var(--senai-blue); }
+.senai-red { color: var(--senai-red); }
+.bg-senai-red { background-color: var(--senai-red); }
+
+.car-card {
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.car-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--senai-blue);
+    box-shadow: 0 10px 25px rgba(10, 56, 113, 0.2);
+}
+
+.detail-section {
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+}
+
+.spec-item {
+    border-left: 4px solid var(--senai-blue);
+    transition: all 0.2s ease;
+}
+
+.spec-item:hover {
+    background-color: rgba(10, 56, 113, 0.05);
+}
+
+.page {
+    display: none;
+}
+
+.page.active {
+    display: block;
+}
+
+.navbar-brand {
+    font-weight: 700;
+    font-size: 1.5rem;
+}
+
+.btn-primary {
+    background-color: var(--senai-blue);
+    border-color: var(--senai-blue);
+}
+
+.btn-primary:hover {
+    background-color: #072a56;
+    border-color: #072a56;
+}
+
+.loading {
+    display: none;
+}
+
+.search-container {
+    background: linear-gradient(rgba(10, 56, 113, 0.4), rgba(10, 56, 113, 0.5)), url('../images/mecanico-manutencao-de-um-motor-de-carro-scaled.jpg');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+@media (max-width: 768px) {
+    .navbar-brand {
+        font-size: 1.2rem;
+    }
+    
+    .car-card {
+        margin-bottom: 1rem;
+    }
+}
