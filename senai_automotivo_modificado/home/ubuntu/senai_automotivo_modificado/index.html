@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SENAI Automotivo - Fichas Técnicas</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+    <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center space-x-4">
+                    <img src="images/wU7KMxCEL6DS.png" alt="Logo SENAI" class="h-10">
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-6">
+                    <a href="#" onclick="showPage('home')" class="nav-link">Início</a>
+                    <a href="#" onclick="showPage('fichas')" class="nav-link">Fichas Técnicas</a>
+                    <!-- Settings Dropdown (Desktop) -->
+                    <div class="relative" x-data="{ open: false }">
+                        <button @click="open = !open" id="settingsDropdownDesktopButton" class="flex items-center nav-link">
+                            <i class="fas fa-user-cog mr-2"></i>
+                            <span id="loginStatusDesktop">Opções</span>
+                            <i class="fas fa-chevron-down ml-1 text-xs"></i>
+                        </button>
+                        <div x-show="open" @click.away="open = false"
+                             x-transition:enter="transition ease-out duration-100"
+                             x-transition:enter-start="transform opacity-0 scale-95"
+                             x-transition:enter-end="transform opacity-100 scale-100"
+                             x-transition:leave="transition ease-in duration-75"
+                             x-transition:leave-start="transform opacity-100 scale-100"
+                             x-transition:leave-end="transform opacity-0 scale-95"
+                             class="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-xl py-1 z-50">
+                            <a href="#" id="loginLinkDesktop" onclick="showPage('login')" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                                <i class="fas fa-sign-in-alt mr-2 w-4 text-center"></i>Login
+                            </a>
+                            <!-- Links de Desenvolvedores/Problema removidos -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden">
+                    <button @click="mobileMenuOpen = !mobileMenuOpen" class="text-gray-700">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile Menu -->
+            <div id="mobileMenuContainer" x-data="{ mobileMenuOpen: false }">
+                <div x-show="mobileMenuOpen" @click.away="mobileMenuOpen = false"
+                     x-transition:enter="transition ease-out duration-200"
+                     x-transition:enter-start="opacity-0 -translate-y-4"
+                     x-transition:enter-end="opacity-100 translate-y-0"
+                     x-transition:leave="transition ease-in duration-150"
+                     x-transition:leave-start="opacity-100 translate-y-0"
+                     x-transition:leave-end="opacity-0 -translate-y-4"
+                     class="md:hidden bg-white shadow-lg absolute top-full left-0 w-full z-40">
+                    <a href="#" onclick="showPage('home'); mobileMenuOpen = false;" class="block py-3 px-4 text-gray-700 hover:bg-gray-50 border-b">Início</a>
+                    <a href="#" onclick="showPage('fichas'); mobileMenuOpen = false;" class="block py-3 px-4 text-gray-700 hover:bg-gray-50 border-b">Fichas Técnicas</a>
+                    <a href="#" id="loginLinkMobile" onclick="showPage('login'); mobileMenuOpen = false;" class="block py-3 px-4 text-gray-700 hover:bg-gray-50 border-b">
+                        <i class="fas fa-sign-in-alt mr-2"></i>Login
+                    </a>
+                     <!-- Links de Desenvolvedores/Problema removidos -->
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content Area -->
+    <main class="max-w-7xl mx-auto px-4 py-8">
+
+        <!-- Home Page -->
+        <div id="homePage" class="page active">
+            <!-- Hero Section -->
+            <section class="search-container text-white py-24 md:py-32 rounded-lg mb-12 text-center">
+                <h1 class="text-3xl md:text-5xl font-bold mb-4">Sistema de Fichas Técnicas Automotivas</h1>
+                <p class="text-lg md:text-xl mb-8 opacity-90">Explore o mundo da tecnologia automotiva com o SENAI</p>
+                <button onclick="showPage('fichas')" class="bg-white text-blue-600 px-6 py-3 rounded-lg font-semibold shadow-md hover:bg-blue-700 hover:text-white transition-all duration-300 ease-in-out">
+                    Ver Fichas Técnicas
+                </button>
+            </section>
+
+            <!-- Categories Section -->
+            <section class="py-12">
+                <h2 class="text-2xl md:text-3xl font-bold text-center mb-8 senai-blue">Categorias de Marcas</h2>
+                <div id="categoryGridHome" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-6">
+                    <!-- Categorias serão carregadas aqui pelo JS -->
+                     <div class="text-center p-4 bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow cursor-pointer" onclick="filterByBrand('Chevrolet')">
+                        <img src="images/chevrolet.jpg" alt="Chevrolet" class="h-16 mx-auto mb-2 object-contain">
+                        <h3 class="font-semibold text-sm md:text-base">Chevrolet</h3>
+                    </div>
+                    <div class="text-center p-4 bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow cursor-pointer" onclick="filterByBrand('Volkswagen')">
+                        <img src="images/volkswagen.png" alt="Volkswagen" class="h-16 mx-auto mb-2 object-contain">
+                        <h3 class="font-semibold text-sm md:text-base">Volkswagen</h3>
+                    </div>
+                    <div class="text-center p-4 bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow cursor-pointer" onclick="filterByBrand('Honda')">
+                        <img src="images/honda.webp" alt="Honda" class="h-16 mx-auto mb-2 object-contain">
+                        <h3 class="font-semibold text-sm md:text-base">Honda</h3>
+                    </div>
+                    <div class="text-center p-4 bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow cursor-pointer" onclick="filterByBrand('Toyota')">
+                        <img src="images/toyota.jpg" alt="Toyota" class="h-16 mx-auto mb-2 object-contain">
+                        <h3 class="font-semibold text-sm md:text-base">Toyota</h3>
+                    </div>
+                    <div class="text-center p-4 bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow cursor-pointer" onclick="filterByBrand('Jeep')">
+                        <img src="images/jeep.jpg" alt="Jeep" class="h-16 mx-auto mb-2 object-contain">
+                        <h3 class="font-semibold text-sm md:text-base">Jeep</h3>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Featured Cars Section -->
+            <section class="py-12 bg-gray-100 -mx-4 px-4 rounded-lg">
+                <h2 class="text-2xl md:text-3xl font-bold text-center mb-8 senai-blue">Veículos em Destaque</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+                    <!-- Exemplo de Card -->
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden flex flex-col">
+                        <img src="images/carros.esportivo.jpg" alt="Carro Esportivo Azul" class="w-full h-48 object-cover">
+                        <div class="p-5 flex flex-col flex-grow">
+                            <h3 class="text-lg font-bold mb-2">Modelos Esportivos</h3>
+                            <p class="text-gray-600 mb-4 text-sm flex-grow">Conheça os veículos de alto desempenho com fichas técnicas detalhadas.</p>
+                            <button onclick="showPage('fichas')" class="mt-auto w-full py-2 bg-senai-blue text-white rounded-lg hover:bg-blue-800 transition-colors text-sm font-semibold">
+                                Explorar
+                            </button>
+                        </div>
+                    </div>
+                     <div class="bg-white rounded-xl shadow-lg overflow-hidden flex flex-col">
+                        <img src="images/chevrolet-onix-sedan-2020-1.jpg.webp" alt="Carro Azul" class="w-full h-48 object-cover">
+                        <div class="p-5 flex flex-col flex-grow">
+                            <h3 class="text-lg font-bold mb-2">Sedans Premium</h3>
+                            <p class="text-gray-600 mb-4 text-sm flex-grow">Descubra os sedans de luxo com tecnologia de ponta e conforto superior.</p>
+                            <button onclick="showPage('fichas')" class="mt-auto w-full py-2 bg-senai-blue text-white rounded-lg hover:bg-blue-800 transition-colors text-sm font-semibold">
+                                Explorar
+                            </button>
+                        </div>
+                    </div>
+                     <div class="bg-white rounded-xl shadow-lg overflow-hidden flex flex-col">
+                        <img src="images/2f0b2b_64065baf27a2434b90c787b711045175~mv2.avif" alt="Carro com Luzes Neon" class="w-full h-48 object-cover">
+                        <div class="p-5 flex flex-col flex-grow">
+                            <h3 class="text-lg font-bold mb-2">Tecnologia Avançada</h3>
+                            <p class="text-gray-600 mb-4 text-sm flex-grow">Veículos com as mais recentes inovações tecnológicas do mercado automotivo.</p>
+                            <button onclick="showPage('fichas')" class="mt-auto w-full py-2 bg-senai-blue text-white rounded-lg hover:bg-blue-800 transition-colors text-sm font-semibold">
+                                Explorar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Fichas Técnicas Page -->
+        <div id="fichasPage" class="page">
+            <div class="bg-white rounded-xl shadow-lg p-6 mb-8">
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
+                    <h2 class="text-2xl font-bold senai-blue">Fichas Técnicas</h2>
+                    <!-- Botão Adicionar Ficha (Professor) -->
+                    <button id="addFichaBtn" onclick="openAddFichaModal()" class="hidden bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition-colors text-sm font-semibold">
+                        <i class="fas fa-plus mr-2"></i>Adicionar Ficha
+                    </button>
+                </div>
+
+                <!-- Search and Filters -->
+                <div class="flex flex-col md:flex-row gap-4 mb-4">
+                    <div class="flex-1">
+                        <input type="text" id="searchInput" placeholder="Pesquisar por modelo, marca ou ano..."
+                               class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm">
+                    </div>
+                    <button id="searchButton" onclick="handleSearch()" class="px-4 py-2 bg-senai-blue text-white rounded-lg hover:bg-blue-800 transition-colors text-sm font-semibold">
+                        <i class="fas fa-search mr-2"></i>Buscar
+                    </button>
+                </div>
+
+                <!-- Filtros Avançados -->
+                <details class="mb-6">
+                    <summary class="cursor-pointer text-sm font-semibold text-gray-600 hover:text-senai-blue">Filtros Avançados <i class="fas fa-filter ml-1"></i></summary>
+                    <div class="mt-4 p-4 border rounded-lg bg-gray-50">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+                            <div>
+                                <label class="block text-xs font-medium text-gray-700 mb-1">Marca</label>
+                                <select id="marcaFilter" class="filter-select">
+                                    <option value="">Todas</option>
+                                    <!-- Marcas carregadas pelo JS -->
+                                </select>
+                            </div>
+                             <div>
+                                <label class="block text-xs font-medium text-gray-700 mb-1">Ano</label>
+                                <select id="anoFilter" class="filter-select">
+                                    <option value="">Todos</option>
+                                     <!-- Anos carregados pelo JS -->
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-medium text-gray-700 mb-1">Potência (cv)</label>
+                                <select id="potenciaFilter" class="filter-select">
+                                    <option value="">Todas</option>
+                                    <option value="0-100">Até 100</option>
+                                    <option value="101-150">101 a 150</option>
+                                    <option value="151-200">151 a 200</option>
+                                    <option value="201+">Acima de 200</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-medium text-gray-700 mb-1">Combustível</label>
+                                <select id="combustivelFilter" class="filter-select">
+                                    <option value="">Todos</option>
+                                     <!-- Combustíveis carregados pelo JS -->
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-medium text-gray-700 mb-1">Transmissão</label>
+                                <select id="transmissaoFilter" class="filter-select">
+                                    <option value="">Todas</option>
+                                     <!-- Transmissões carregadas pelo JS -->
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-medium text-gray-700 mb-1">Carroceria</label>
+                                <select id="carroceriaFilter" class="filter-select">
+                                    <option value="">Todas</option>
+                                     <!-- Carrocerias carregadas pelo JS -->
+                                </select>
+                            </div>
+                             <!-- Filtro de Categoria (Professor) -->
+                            <div id="categoryFilterContainer">
+                                <label class="block text-xs font-medium text-gray-700 mb-1">Categoria</label>
+                                <select id="categoriaFilter" class="filter-select">
+                                    <option value="">Todas</option>
+                                     <!-- Categorias carregadas pelo JS -->
+                                </select>
+                            </div>
+                        </div>
+                        <div class="mt-4 flex flex-col sm:flex-row justify-end gap-2">
+                            <button onclick="resetFilters()" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition-colors text-sm font-semibold">
+                                Limpar Filtros
+                            </button>
+                            <button onclick="applyFilters()" class="px-4 py-2 bg-senai-blue text-white rounded-lg hover:bg-blue-800 transition-colors text-sm font-semibold">
+                                Aplicar Filtros
+                            </button>
+                        </div>
+                    </div>
+                </details>
+            </div>
+
+             <!-- Professor Section (Hidden by default) -->
+            <div id="professorSection" class="hidden bg-blue-50 border border-blue-200 rounded-xl shadow-lg p-6 mb-8">
+                 <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 gap-4">
+                    <h3 class="text-xl font-bold text-senai-blue">Área do Professor</h3>
+                    <button onclick="openAddCategoryModal()" class="bg-purple-500 text-white px-4 py-2 rounded-lg hover:bg-purple-600 transition-colors text-sm font-semibold">
+                        <i class="fas fa-tags mr-2"></i>Gerenciar Categorias
+                    </button>
+                </div>
+                <p class="text-sm text-gray-600">Aqui você pode adicionar, editar ou excluir fichas técnicas e gerenciar categorias de veículos.</p>
+                <!-- Conteúdo específico do professor (ex: botões de gerenciamento) será adicionado aqui -->
+            </div>
+
+            <!-- Car List -->
+            <div id="carList" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Car cards will be loaded here by JS -->
+            </div>
+            <div id="noResults" class="hidden text-center text-gray-500 mt-8">
+                Nenhuma ficha técnica encontrada com os filtros selecionados.
+            </div>
+        </div>
+
+        <!-- Login Page -->
+        <div id="loginPage" class="page">
+            <div class="max-w-md mx-auto mt-10 bg-white p-8 rounded-xl shadow-lg">
+                <h2 class="text-2xl font-bold text-center mb-6 senai-blue">Login do Professor</h2>
+                <form id="loginForm">
+                    <div class="mb-4">
+                        <label for="username" class="block text-sm font-medium text-gray-700 mb-1">Usuário</label>
+                        <input type="text" id="username" name="username" required
+                               class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                    </div>
+                    <div class="mb-6">
+                        <label for="password" class="block text-sm font-medium text-gray-700 mb-1">Senha</label>
+                        <input type="password" id="password" name="password" required
+                               class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                    </div>
+                    <div id="loginErrorMessage" class="hidden text-red-500 text-sm mb-4 text-center"></div>
+                    <button type="submit" class="w-full py-3 bg-senai-blue text-white rounded-lg font-semibold hover:bg-blue-800 transition-colors">
+                        Entrar
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Ficha Técnica Detail Modal -->
+        <div id="fichaDetailModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50 hidden">
+            <div class="bg-white rounded-xl shadow-2xl max-w-3xl w-full max-h-[90vh] overflow-y-auto relative">
+                <button onclick="closeModal('fichaDetailModal')" class="absolute top-4 right-4 text-gray-500 hover:text-red-600 text-2xl">&times;</button>
+                <div id="fichaDetailContent" class="p-6 md:p-8">
+                    <!-- Content loaded by JS -->
+                </div>
+                 <div class="px-6 pb-6 flex flex-col sm:flex-row justify-end gap-3">
+                     <!-- Botões de Ação (Professor) -->
+                    <button id="editFichaBtnModal" onclick="openEditFichaModalFromDetail()" class="hidden bg-yellow-500 text-white px-4 py-2 rounded-lg hover:bg-yellow-600 transition-colors text-sm font-semibold">
+                        <i class="fas fa-edit mr-2"></i>Editar
+                    </button>
+                    <button id="deleteFichaBtnModal" onclick="confirmDeleteFichaFromDetail()" class="hidden bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition-colors text-sm font-semibold">
+                        <i class="fas fa-trash mr-2"></i>Excluir
+                    </button>
+                    <!-- Botão Gerar PDF (Todos) -->
+                    <button id="pdfFichaBtnModal" onclick="generatePdfFromDetail()" class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors text-sm font-semibold">
+                        <i class="fas fa-file-pdf mr-2"></i>Gerar PDF
+                    </button>
+                </div>
+            </div>
+        </div>
+
+         <!-- Add/Edit Ficha Técnica Modal -->
+        <div id="fichaFormModal" class="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center p-4 z-50 hidden">
+            <div class="bg-white rounded-xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto relative">
+                 <button onclick="closeModal('fichaFormModal')" class="absolute top-4 right-4 text-gray-500 hover:text-red-600 text-2xl">&times;</button>
+                <h3 id="fichaFormTitle" class="text-xl font-bold senai-blue p-6 border-b">Adicionar Nova Ficha Técnica</h3>
+                <form id="fichaForm" class="p-6 space-y-6">
+                    <input type="hidden" id="editFichaId">
+                    <!-- Campos do formulário serão gerados aqui pelo JS -->
+                    <div id="fichaFormFields" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <!-- Placeholder for form fields -->
+                    </div>
+                    <div id="fichaFormErrorMessage" class="hidden text-red-500 text-sm text-center"></div>
+                    <div class="flex justify-end gap-3 pt-4 border-t">
+                        <button type="button" onclick="closeModal('fichaFormModal')" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition-colors text-sm font-semibold">Cancelar</button>
+                        <button type="submit" class="px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors text-sm font-semibold">Salvar Ficha</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Add/Manage Category Modal -->
+        <div id="categoryModal" class="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center p-4 z-50 hidden">
+            <div class="bg-white rounded-xl shadow-2xl max-w-lg w-full max-h-[80vh] overflow-y-auto relative">
+                <button onclick="closeModal('categoryModal')" class="absolute top-4 right-4 text-gray-500 hover:text-red-600 text-2xl">&times;</button>
+                <h3 class="text-xl font-bold senai-blue p-6 border-b">Gerenciar Categorias</h3>
+                <div class="p-6">
+                    <form id="addCategoryForm" class="flex gap-2 mb-4">
+                        <input type="text" id="newCategoryName" placeholder="Nome da nova categoria" class="flex-grow px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm" required>
+                        <button type="submit" class="px-4 py-2 bg-purple-500 text-white rounded-lg hover:bg-purple-600 transition-colors text-sm font-semibold"><i class="fas fa-plus"></i></button>
+                    </form>
+                    <div id="categoryList" class="space-y-2">
+                        <!-- Lista de categorias será carregada aqui -->
+                    </div>
+                     <div id="categoryErrorMessage" class="hidden text-red-500 text-sm mt-4 text-center"></div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8 mt-16">
+        <div class="max-w-7xl mx-auto px-4 text-center text-sm">
+            &copy; 2024 SENAI Automotivo. Todos os direitos reservados.
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="car_data.js"></script>
+    <script src="auth.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="pdfGenerator.js"></script> <!-- Script para PDF -->
+    <script src="script.js"></script> <!-- Script principal -->
+
+</body>
+</html>
+
