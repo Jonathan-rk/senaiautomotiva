@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SENAI Automotivo - Fichas Técnicas</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    
+    <!-- External CSS Files -->
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/auth.css">
+    <link rel="stylesheet" href="styles/dashboard.css">
+    <link rel="stylesheet" href="styles/notifications.css">
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center space-x-4">
+                    <img src="images/wU7KMxCEL6DS.png" alt="SENAI Logo" class="h-10">
+                    <span class="navbar-brand senai-blue">SENAI Automotivo</span>
+                </div>
+                
+                <div class="desktop-nav hidden md:flex items-center space-x-6">
+                    <a href="index.html" onclick="showPage('home')" class="nav-link">Início</a>
+                    <a href="#" onclick="showPage('fichas')" class="nav-link">Fichas Técnicas</a>
+                    
+                    <!-- Settings Dropdown -->
+                    <div class="relative settings-dropdown" x-data="{ open: false }">
+                        <button @click="open = !open" class="flex items-center nav-link">
+                            <i class="fas fa-cog mr-2"></i>
+                            <i class="fas fa-chevron-down ml-2"></i>
+                        </button>
+                        <div x-show="open" @click.away="open = false" class="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-2 z-50">
+                            <a href="login.html" onclick="showPage('login')" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">
+                                <i class="fas fa-sign-in-alt mr-2"></i>Login
+                            </a>
+                            <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">
+                                <i class="fas fa-code mr-2"></i>Desenvolvedores
+                            </a>
+                            <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">
+                                <i class="fas fa-bug mr-2"></i>Relatar Problema
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="md:hidden">
+                    <button onclick="toggleMobileMenu()" class="text-gray-700 p-2">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Mobile Menu -->
+            <div id="mobileMenu" class="mobile-menu hidden pb-4">
+                <div class="space-y-2">
+                    <a href="index.html" onclick="showPage('home')" class="block py-2 px-4 text-gray-700 hover:bg-gray-100 rounded">Início</a>
+                    <a href="#" onclick="showPage('fichas')" class="block py-2 px-4 text-gray-700 hover:bg-gray-100 rounded">Fichas Técnicas</a>
+                    <a href="login.html" onclick="showPage('login')" class="block py-2 px-4 text-gray-700 hover:bg-gray-100 rounded">
+                        <i class="fas fa-sign-in-alt mr-2"></i>Login
+                    </a>
+                    <a href="#" class="block py-2 px-4 text-gray-700 hover:bg-gray-100 rounded">
+                        <i class="fas fa-code mr-2"></i>Desenvolvedores
+                    </a>
+                    <a href="#" class="block py-2 px-4 text-gray-700 hover:bg-gray-100 rounded">
+                        <i class="fas fa-bug mr-2"></i>Relatar Problema
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Home Page -->
+    <div id="homePage" class="page active">
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="container">
+                <h1 class="hero-title">
+                    Sistema de Fichas Técnicas Automotivas
+                </h1>
+                <p class="hero-subtitle">
+                    Explore o mundo da tecnologia automotiva com o SENAI
+                </p>
+                <button onclick="showPage('fichas')" class="btn btn-primary text-lg px-8 py-4">
+                    <i class="fas fa-car mr-2"></i>Ver Fichas Técnicas
+                </button>
+            </div>
+        </section>
+
+        <!-- Categories Section -->
+        <section class="py-16">
+            <div class="container">
+                <h2 class="text-3xl font-bold text-center mb-12 senai-blue">Categorias de Marcas</h2>
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+                    <div class="card text-center p-6 cursor-pointer" onclick="filterByBrand('Chevrolet')">
+                        <img src="images/chevrolet.jpg" alt="Chevrolet" class="w-full h-16 object-contain mb-4">
+                        <h3 class="font-semibold text-gray-800">Chevrolet</h3>
+                    </div>
+                    <div class="card text-center p-6 cursor-pointer" onclick="filterByBrand('Volkswagen')">
+                        <img src="images/volkswagen.png" alt="Volkswagen" class="w-full h-16 object-contain mb-4">
+                        <h3 class="font-semibold text-gray-800">Volkswagen</h3>
+                    </div>
+                    <div class="card text-center p-6 cursor-pointer" onclick="filterByBrand('Honda')">
+                        <img src="images/honda.webp" alt="Honda" class="w-full h-16 object-contain mb-4">
+                        <h3 class="font-semibold text-gray-800">Honda</h3>
+                    </div>
+                    <div class="card text-center p-6 cursor-pointer" onclick="filterByBrand('Toyota')">
+                        <img src="images/toyota.jpg" alt="Toyota" class="w-full h-16 object-contain mb-4">
+                        <h3 class="font-semibold text-gray-800">Toyota</h3>
+                    </div>
+                    <div class="card text-center p-6 cursor-pointer" onclick="filterByBrand('Jeep')">
+                        <img src="images/jeep.jpg" alt="Jeep" class="w-full h-16 object-contain mb-4">
+                        <h3 class="font-semibold text-gray-800">Jeep</h3>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Featured Cars Section -->
+        <section class="py-16 bg-gray-100">
+            <div class="container">
+                <h2 class="text-3xl font-bold text-center mb-12 senai-blue">Veículos em Destaque</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="card overflow-hidden">
+                        <img src="images/carros.esportivo.jpg" alt="Carro Esportivo Azul" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-2 text-gray-800">Modelos Esportivos</h3>
+                            <p class="text-gray-600 mb-4">Conheça os veículos de alto desempenho com fichas técnicas detalhadas.</p>
+                            <button onclick="showPage('fichas')" class="btn btn-primary w-full">
+                                <i class="fas fa-search mr-2"></i>Explorar
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card overflow-hidden">
+                        <img src="images/chevrolet-onix-sedan-2020-1.jpg.webp" alt="Carro Azul" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-2 text-gray-800">Sedans Premium</h3>
+                            <p class="text-gray-600 mb-4">Descubra os sedans de luxo com tecnologia de ponta e conforto superior.</p>
+                            <button onclick="showPage('fichas')" class="btn btn-primary w-full">
+                                <i class="fas fa-search mr-2"></i>Explorar
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card overflow-hidden">
+                        <img src="images/2f0b2b_64065baf27a2434b90c787b711045175~mv2.avif" alt="Carro com Luzes Neon" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-2 text-gray-800">Tecnologia Avançada</h3>
+                            <p class="text-gray-600 mb-4">Veículos com as mais recentes inovações tecnológicas do mercado automotivo.</p>
+                            <button onclick="showPage('fichas')" class="btn btn-primary w-full">
+                                <i class="fas fa-search mr-2"></i>Explorar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Fichas Técnicas Page -->
+    <div id="fichasPage" class="page">
+        <div class="max-w-7xl mx-auto px-4 py-8">
+            <!-- Search and Filters -->
+            <div class="bg-white rounded-xl shadow-lg p-6 mb-8">
+                <h2 class="text-2xl font-bold mb-6 senai-blue">Fichas Técnicas</h2>
+                
+                <div class="flex flex-col md:flex-row gap-4 mb-6">
+                    <div class="flex-1">
+                        <input type="text" id="searchInput" placeholder="Pesquisar por modelo, marca ou ano..." 
+                               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                    </div>
+                    <button class="px-3 py-2 bg-senai-blue text-white rounded-lg hover:bg-blue-800 transition-colors">
+                        <i class="fas fa-search mr-2"></i>Buscar
+                    </button>
+                </div>
+                
+                <!-- Filtros Avançados -->
+                <div class="mb-6">
+                    <h3 class="text-lg font-semibold mb-3">Filtros por Características</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Potência</label>
+                            <select id="potenciaFilter" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                                <option value="">Todas</option>
+                                <option value="0-100">Até 100 cv</option>
+                                <option value="101-150">101 a 150 cv</option>
+                                <option value="151-200">151 a 200 cv</option>
+                                <option value="201-1000">Acima de 200 cv</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Combustível</label>
+                            <select id="combustivelFilter" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                                <option value="todos">Todos</option>
+                                <option value="Flex">Flex</option>
+                                <option value="Gasolina">Gasolina</option>
+                                <option value="Diesel">Diesel</option>
+                                <option value="Híbrido">Híbrido</option>
+                                <option value="Elétrico">Elétrico</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Transmissão</label>
+                            <select id="transmissaoFilter" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                                <option value="todos">Todas</option>
+                                <option value="Manual">Manual</option>
+                                <option value="Automática">Automática</option>
+                                <option value="CVT">CVT</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Carroceria</label>
+                            <select id="carroceriaFilter" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                                <option value="todos">Todas</option>
+                                <option value="Hatch">Hatch</option>
+                                <option value="Sedan">Sedan</option>
+                                <option value="SUV">SUV</option>
+                                <option value="Picape">Picape</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="mt-4 flex justify-end">
+                        <button onclick="resetFilters()" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition-colors mr-3">
+                            Limpar Filtros
+                        </button>
+                        <button onclick="loadCars()" class="px-4 py-2 bg-senai-blue text-white rounded-lg hover:bg-blue-800 transition-colors">
+                            Aplicar Filtros
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Brand Filters -->
+                <div class="flex flex-wrap gap-2">
+                    <button onclick="filterCars('all')" class="filter-btn px-4 py-2 rounded-full bg-gray-200 text-gray-700 text-sm hover:bg-gray-300 transition-colors">
+                        Todas
+                    </button>                    
+                    <button onclick="filterCars('Chevrolet')" class="filter-btn px-4 py-2 rounded-full bg-gray-200 text-gray-700 text-sm hover:bg-gray-300 transition-colors">
+                        Chevrolet
+                    </button>
+                    <button onclick="filterCars('Volkswagen')" class="filter-btn px-4 py-2 rounded-full bg-gray-200 text-gray-700 text-sm hover:bg-gray-300 transition-colors">
+                        Volkswagen
+                    </button>
+                    <button onclick="filterCars('Honda')" class="filter-btn px-4 py-2 rounded-full bg-gray-200 text-gray-700 text-sm hover:bg-gray-300 transition-colors">
+                        Honda
+                    </button>
+                    <button onclick="filterCars('Toyota')" class="filter-btn px-4 py-2 rounded-full bg-gray-200 text-gray-700 text-sm hover:bg-gray-300 transition-colors">
+                        Toyota
+                    </button>
+                    <button onclick="filterCars('Fiat')" class="filter-btn px-4 py-2 rounded-full bg-gray-200 text-gray-700 text-sm hover:bg-gray-300 transition-colors">
+                        Fiat
+                    </button>
+                    <button onclick="filterCars('Hyundai')" class="filter-btn px-4 py-2 rounded-full bg-gray-200 text-gray-700 text-sm hover:bg-gray-300 transition-colors">
+                        Hyundai
+                    </button>
+                    <button onclick="filterCars('Jeep')" class="filter-btn px-4 py-2 rounded-full bg-gray-200 text-gray-700 text-sm hover:bg-gray-300 transition-colors">
+                        Jeep
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Cars Grid -->
+            <div id="carsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Cars will be loaded here -->
+            </div>
+            
+            <!-- Loading -->
+            <div id="loading" class="loading text-center py-8">
+                <i class="fas fa-spinner fa-spin text-3xl senai-blue"></i>
+                <p class="mt-2 text-gray-600">Carregando fichas técnicas...</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Car Detail Page -->
+    <div id="detailPage" class="page">
+        <div class="max-w-4xl mx-auto px-4 py-8">
+            <!-- Back Button -->
+            <button onclick="showPage('fichas')" class="mb-6 flex items-center text-blue-800 hover:text-blue-900 transition-colors">
+                <i class="fas fa-arrow-left mr-2"></i>
+                Voltar para listagem
+            </button>
+            
+            <!-- Car Detail Content -->
+            <div id="carDetailContent" class="bg-white rounded-xl shadow-lg overflow-hidden">
+                <!-- Content will be loaded dynamically -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Login Page -->
+    <div id="loginPage" class="page">
+        <div class="auth-container">
+            <div class="auth-card">
+                <div class="auth-header">
+                    <div class="auth-icon">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <h2 class="auth-title">Login SENAI Automotivo</h2>
+                    <p class="auth-subtitle">Acesse sua conta para gerenciar fichas técnicas</p>
+                </div>
+                
+                <form class="auth-form" onsubmit="handleLogin(event)">
+                    <div class="input-group">
+                        <label for="username" class="form-label">Usuário</label>
+                        <input id="username" name="username" type="text" required 
+                               class="auth-input" placeholder="Digite seu usuário">
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="password" class="form-label">Senha</label>
+                        <input id="password" name="password" type="password" required 
+                               class="auth-input" placeholder="Digite sua senha">
+                    </div>
+                    
+                    <div class="remember-me">
+                        <input id="remember" name="remember" type="checkbox">
+                        <label for="remember">Lembrar-me</label>
+                    </div>
+                    
+                    <button type="submit" class="auth-submit">
+                        <i class="fas fa-sign-in-alt mr-2"></i>Entrar
+                    </button>
+                    
+                    <!-- Demo Login Info -->
+                    <div class="demo-info">
+                        <h4 class="demo-title">Contas de Demonstração:</h4>
+                        <div class="demo-credentials">
+                            <p><strong>Professor:</strong> prof@senai.com / senha123</p>
+                            <p><strong>Aluno:</strong> aluno@senai.com / senha123</p>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-senai-blue text-white py-8 mt-12">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <img src="images/wU7KMxCEL6DS.png" alt="SENAI Logo" class="h-10">
+                    <p class="mt-2 text-sm opacity-80">© 2025 SENAI Automotivo. Todos os direitos reservados.</p>
+                </div>
+                <div class="flex space-x-6">
+                    <!-- Facebook -->
+                    <a href="https://www.facebook.com/senaijoinvilleoficial" target="_blank" rel="noopener noreferrer" class="hover:text-gray-300 transition-colors">
+                        <i class="fab fa-facebook-f text-xl"></i>
+                    </a>
+                
+                    <!-- Instagram -->
+                    <a href="https://www.instagram.com/senai.joinvillesc/" target="_blank" rel="noopener noreferrer" class="hover:text-gray-300 transition-colors">
+                        <i class="fab fa-instagram text-xl"></i>
+                    </a>
+                
+                    <!-- LinkedIn -->
+                    <a href="https://www.linkedin.com/company/senai-sc" target="_blank" rel="noopener noreferrer" class="hover:text-gray-300 transition-colors">
+                        <i class="fab fa-linkedin-in text-xl"></i>
+                    </a>
+                
+                    <!-- YouTube -->
+                    <a href="https://www.youtube.com/@SENAISantaCatarina" target="_blank" rel="noopener noreferrer" class="hover:text-gray-300 transition-colors">
+                        <i class="fab fa-youtube text-xl"></i>
+                    </a>
+                </div>
+                
+            </div>
+            <div class="mt-8 pt-8 border-t border-blue-800 text-sm opacity-80">
+                <div class="flex flex-col md:flex-row justify-between">
+                    <div class="mb-4 md:mb-0">
+                        <a href="#" class="hover:text-gray-300 transition-colors mr-4">Política de Privacidade</a>
+                        <a href="#" class="hover:text-gray-300 transition-colors mr-4">Termos de Uso</a>
+                        <a href="#" class="hover:text-gray-300 transition-colors">Contato</a>
+                    </div>
+                    <div>
+                        <p>SENAI - Serviço Nacional de Aprendizagem Industrial</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script src="js/categories.js"></script>
+    <script src="js/main.js"></script>
+
+</body>
+</html>

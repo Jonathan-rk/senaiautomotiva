@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SENAI Automotivo</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css"
+    />
+
+    <!-- External CSS Files -->
+    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="stylesheet" href="styles/auth.css" />
+    <link rel="stylesheet" href="styles/dashboard.css" />
+    <link rel="stylesheet" href="styles/notifications.css" />
+  </head>
+  <body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="navbar">
+      <div class="container">
+        <div class="flex justify-between items-center py-4">
+          <div class="flex items-center space-x-4">
+            <img src="images/wU7KMxCEL6DS.png" alt="SENAI Logo" class="h-10" />
+            <span class="navbar-brand senai-blue">SENAI Automotivo</span>
+          </div>
+
+          <div class="desktop-nav hidden md:flex items-center space-x-6">
+            <a href="index.html" onclick="showPage('home')" class="nav-link">Início</a>
+            <a href="#" onclick="showPage('fichas')" class="nav-link"
+              >Fichas Técnicas</a
+            >
+
+            <!-- Settings Dropdown -->
+            <div class="relative settings-dropdown" x-data="{ open: false }">
+              <button @click="open = !open" class="flex items-center nav-link">
+                <i class="fas fa-cog mr-2"></i>Configurações
+                <i class="fas fa-chevron-down ml-2"></i>
+              </button>
+              <div
+                x-show="open"
+                @click.away="open = false"
+                class="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-2 z-50"
+              >
+                <a
+                  href="login.html"
+                  onclick="showPage('login')"
+                  class="block px-4 py-2 text-gray-700 hover:bg-gray-100"
+                >
+                  <i class="fas fa-sign-in-alt mr-2"></i>Login
+                </a>
+                <a
+                  href="#"
+                  class="block px-4 py-2 text-gray-700 hover:bg-gray-100"
+                >
+                  <i class="fas fa-code mr-2"></i>Desenvolvedores
+                </a>
+                <a
+                  href="#"
+                  class="block px-4 py-2 text-gray-700 hover:bg-gray-100"
+                >
+                  <i class="fas fa-bug mr-2"></i>Relatar Problema
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="md:hidden">
+            <button onclick="toggleMobileMenu()" class="text-gray-700 p-2">
+              <i class="fas fa-bars text-xl"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="mobile-menu hidden pb-4">
+          <div class="space-y-2">
+            <a
+              href="#"
+              onclick="showPage('home')"
+              class="block py-2 px-4 text-gray-700 hover:bg-gray-100 rounded"
+              >Início</a
+            >
+            <a
+              href="#"
+              onclick="showPage('fichas')"
+              class="block py-2 px-4 text-gray-700 hover:bg-gray-100 rounded"
+              >Fichas Técnicas</a
+            >
+            <a
+              href="#"
+              onclick="showPage('login')"
+              class="block py-2 px-4 text-gray-700 hover:bg-gray-100 rounded"
+            >
+              <i class="fas fa-sign-in-alt mr-2"></i>Login
+            </a>
+            <a
+              href="#"
+              class="block py-2 px-4 text-gray-700 hover:bg-gray-100 rounded"
+            >
+              <i class="fas fa-code mr-2"></i>Desenvolvedores
+            </a>
+            <a
+              href="#"
+              class="block py-2 px-4 text-gray-700 hover:bg-gray-100 rounded"
+            >
+              <i class="fas fa-bug mr-2"></i>Relatar Problema
+            </a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Footer -->
+    <footer class="bg-senai-blue text-white py-8 mt-12">
+      <div class="max-w-7xl mx-auto px-4">
+        <div class="flex flex-col md:flex-row justify-between items-center">
+          <div class="mb-6 md:mb-0">
+            <img src="images/wU7KMxCEL6DS.png" alt="SENAI Logo" class="h-10" />
+            <p class="mt-2 text-sm opacity-80">
+              © 2025 SENAI Automotivo. Todos os direitos reservados.
+            </p>
+          </div>
+          <div class="flex space-x-6">
+            <!-- Facebook -->
+            <a
+              href="https://www.facebook.com/senaijoinvilleoficial"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="hover:text-gray-300 transition-colors"
+            >
+              <i class="fab fa-facebook-f text-xl"></i>
+            </a>
+
+            <!-- Instagram -->
+            <a
+              href="https://www.instagram.com/senai.joinvillesc/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="hover:text-gray-300 transition-colors"
+            >
+              <i class="fab fa-instagram text-xl"></i>
+            </a>
+
+            <!-- LinkedIn -->
+            <a
+              href="https://www.linkedin.com/company/senai-sc"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="hover:text-gray-300 transition-colors"
+            >
+              <i class="fab fa-linkedin-in text-xl"></i>
+            </a>
+
+            <!-- YouTube -->
+            <a
+              href="https://www.youtube.com/@SENAISantaCatarina"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="hover:text-gray-300 transition-colors"
+            >
+              <i class="fab fa-youtube text-xl"></i>
+            </a>
+          </div>
+        </div>
+        <div class="mt-8 pt-8 border-t border-blue-800 text-sm opacity-80">
+          <div class="flex flex-col md:flex-row justify-between">
+            <div class="mb-4 md:mb-0">
+              <a href="#" class="hover:text-gray-300 transition-colors mr-4"
+                >Política de Privacidade</a
+              >
+              <a href="#" class="hover:text-gray-300 transition-colors mr-4"
+                >Termos de Uso</a
+              >
+              <a href="#" class="hover:text-gray-300 transition-colors"
+                >Contato</a
+              >
+            </div>
+            <div>
+              <p>SENAI - Serviço Nacional de Aprendizagem Industrial</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script src="js/categories.js"></script>
+    <script src="js/main.js"></script>
+  </body>
+</html>
