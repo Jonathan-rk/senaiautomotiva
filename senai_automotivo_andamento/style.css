@@ -1,0 +1,690 @@
+/* ===== SENAI AUTOMOTIVO - CSS BASEADO NO DESIGN ORIGINAL ===== */
+
+/* ===== VARIÁVEIS CSS ===== */
+:root {
+    --senai-blue: #0A3871;
+    --senai-red: #E31E24;
+    --senai-dark: #1D2939;
+    --gray-50: #f9fafb;
+    --gray-100: #f3f4f6;
+    --gray-200: #e5e7eb;
+    --gray-300: #d1d5db;
+    --gray-400: #9ca3af;
+    --gray-500: #6b7280;
+    --gray-600: #4b5563;
+    --gray-700: #374151;
+    --gray-800: #1f2937;
+    --gray-900: #111827;
+    --blue-600: #2563eb;
+    --blue-700: #1d4ed8;
+    --blue-800: #1e40af;
+}
+
+/* ===== RESET E BASE ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    line-height: 1.6;
+    color: var(--gray-900);
+    background-color: var(--gray-50);
+}
+
+/* ===== CLASSES UTILITÁRIAS (BASEADAS NO TAILWIND) ===== */
+
+/* Container */
+.max-w-7xl {
+    max-width: 80rem;
+}
+
+.mx-auto {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.px-4 {
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+.py-4 {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+.py-8 {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+
+.py-16 {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+}
+
+.py-32 {
+    padding-top: 8rem;
+    padding-bottom: 8rem;
+}
+
+.p-6 {
+    padding: 1.5rem;
+}
+
+.mb-6 {
+    margin-bottom: 1.5rem;
+}
+
+.mb-8 {
+    margin-bottom: 2rem;
+}
+
+.mb-12 {
+    margin-bottom: 3rem;
+}
+
+.mr-2 {
+    margin-right: 0.5rem;
+}
+
+.ml-2 {
+    margin-left: 0.5rem;
+}
+
+/* Flexbox */
+.flex {
+    display: flex;
+}
+
+.justify-between {
+    justify-content: space-between;
+}
+
+.justify-center {
+    justify-content: center;
+}
+
+.items-center {
+    align-items: center;
+}
+
+.space-x-4 > * + * {
+    margin-left: 1rem;
+}
+
+.space-x-6 > * + * {
+    margin-left: 1.5rem;
+}
+
+.flex-col {
+    flex-direction: column;
+}
+
+.flex-1 {
+    flex: 1 1 0%;
+}
+
+/* Grid */
+.grid {
+    display: grid;
+}
+
+.grid-cols-1 {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+}
+
+.grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.gap-4 {
+    gap: 1rem;
+}
+
+.gap-6 {
+    gap: 1.5rem;
+}
+
+.gap-8 {
+    gap: 2rem;
+}
+
+/* Backgrounds */
+.bg-white {
+    background-color: #ffffff;
+}
+
+.bg-gray-50 {
+    background-color: var(--gray-50);
+}
+
+.bg-gray-100 {
+    background-color: var(--gray-100);
+}
+
+.bg-senai-blue {
+    background-color: var(--senai-blue);
+}
+
+.bg-senai-red {
+    background-color: var(--senai-red);
+}
+
+/* Text Colors */
+.text-white {
+    color: #ffffff;
+}
+
+.text-gray-600 {
+    color: var(--gray-600);
+}
+
+.text-gray-700 {
+    color: var(--gray-700);
+}
+
+.text-blue-600 {
+    color: var(--blue-600);
+}
+
+.senai-blue {
+    color: var(--senai-blue);
+}
+
+.senai-red {
+    color: var(--senai-red);
+}
+
+/* Typography */
+.text-xl {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+}
+
+.text-2xl {
+    font-size: 1.5rem;
+    line-height: 2rem;
+}
+
+.text-3xl {
+    font-size: 1.875rem;
+    line-height: 2.25rem;
+}
+
+.text-4xl {
+    font-size: 2.25rem;
+    line-height: 2.5rem;
+}
+
+.text-6xl {
+    font-size: 3.75rem;
+    line-height: 1;
+}
+
+.text-lg {
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+}
+
+.text-sm {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+}
+
+.font-bold {
+    font-weight: 700;
+}
+
+.font-semibold {
+    font-weight: 600;
+}
+
+.font-medium {
+    font-weight: 500;
+}
+
+.text-center {
+    text-align: center;
+}
+
+/* Borders e Radius */
+.rounded-xl {
+    border-radius: 0.75rem;
+}
+
+.rounded-lg {
+    border-radius: 0.5rem;
+}
+
+.border {
+    border-width: 1px;
+}
+
+.border-gray-300 {
+    border-color: var(--gray-300);
+}
+
+/* Shadows */
+.shadow-lg {
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.shadow-xl {
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.shadow-md {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+/* Positioning */
+.sticky {
+    position: sticky;
+}
+
+.top-0 {
+    top: 0;
+}
+
+.z-50 {
+    z-index: 50;
+}
+
+.relative {
+    position: relative;
+}
+
+.absolute {
+    position: absolute;
+}
+
+.right-0 {
+    right: 0;
+}
+
+.mt-2 {
+    margin-top: 0.5rem;
+}
+
+/* Sizing */
+.w-full {
+    width: 100%;
+}
+
+.h-10 {
+    height: 2.5rem;
+}
+
+.h-48 {
+    height: 12rem;
+}
+
+/* Display */
+.hidden {
+    display: none;
+}
+
+.block {
+    display: block;
+}
+
+/* Overflow */
+.overflow-hidden {
+    overflow: hidden;
+}
+
+/* Object Fit */
+.object-cover {
+    object-fit: cover;
+}
+
+.object-contain {
+    object-fit: contain;
+}
+
+/* Opacity */
+.opacity-90 {
+    opacity: 0.9;
+}
+
+/* Cursor */
+.cursor-pointer {
+    cursor: pointer;
+}
+
+/* ===== COMPONENTES ESPECÍFICOS ===== */
+
+/* Navigation */
+nav {
+    background-color: #ffffff;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    position: sticky;
+    top: 0;
+    z-index: 50;
+}
+
+nav a {
+    color: var(--gray-700);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+nav a:hover {
+    color: var(--blue-600);
+}
+
+/* Hero Section */
+.search-container {
+    background: linear-gradient(rgba(10, 56, 113, 0.4), rgba(10, 56, 113, 0.5)), url('images/mecanico-manutencao-de-um-motor-de-carro-scaled.jpg');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    color: #ffffff;
+    padding-top: 8rem;
+    padding-bottom: 8rem;
+}
+
+/* Car Cards */
+.car-card {
+    background-color: #ffffff;
+    border-radius: 0.75rem;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.car-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--senai-blue);
+    box-shadow: 0 10px 25px rgba(10, 56, 113, 0.2);
+}
+
+/* Detail Section */
+.detail-section {
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+/* Spec Items */
+.spec-item {
+    border-left: 4px solid var(--senai-blue);
+    padding: 1rem;
+    background-color: #ffffff;
+    margin-bottom: 0.5rem;
+    border-radius: 0.5rem;
+    transition: all 0.2s ease;
+}
+
+.spec-item:hover {
+    background-color: rgba(10, 56, 113, 0.05);
+}
+
+/* Buttons */
+.btn-primary {
+    background-color: var(--senai-blue);
+    border-color: var(--senai-blue);
+    color: #ffffff;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+}
+
+.btn-primary:hover {
+    background-color: #072a56;
+    border-color: #072a56;
+    transform: scale(1.05);
+}
+
+/* Form Elements */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+select,
+textarea {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--gray-300);
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    border-color: var(--blue-600);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+/* Page System */
+.page {
+    display: none;
+}
+
+.page.active {
+    display: block;
+}
+
+/* Loading */
+.loading {
+    display: none;
+}
+
+/* ===== RESPONSIVIDADE ===== */
+
+/* Medium screens (768px and up) */
+@media (min-width: 768px) {
+    .md\\:flex {
+        display: flex;
+    }
+    
+    .md\\:hidden {
+        display: none;
+    }
+    
+    .md\\:grid-cols-3 {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+    
+    .md\\:grid-cols-4 {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+    
+    .md\\:flex-row {
+        flex-direction: row;
+    }
+    
+    .md\\:text-6xl {
+        font-size: 3.75rem;
+        line-height: 1;
+    }
+}
+
+/* Large screens (1024px and up) */
+@media (min-width: 1024px) {
+    .lg\\:grid-cols-5 {
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+    }
+}
+
+/* Mobile specific adjustments */
+@media (max-width: 767px) {
+    .navbar-brand {
+        font-size: 1.2rem;
+    }
+    
+    .car-card {
+        margin-bottom: 1rem;
+    }
+    
+    .text-4xl {
+        font-size: 2rem;
+        line-height: 2.25rem;
+    }
+    
+    .py-32 {
+        padding-top: 4rem;
+        padding-bottom: 4rem;
+    }
+    
+    .px-4 {
+        padding-left: 0.75rem;
+        padding-right: 0.75rem;
+    }
+}
+
+/* ===== ANIMAÇÕES E TRANSIÇÕES ===== */
+.transition-colors {
+    transition: color 0.3s ease;
+}
+
+.transition-shadow {
+    transition: box-shadow 0.3s ease;
+}
+
+.transition-all {
+    transition: all 0.3s ease;
+}
+
+.duration-300 {
+    transition-duration: 300ms;
+}
+
+.ease-in-out {
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hover\\:bg-blue-700:hover {
+    background-color: var(--blue-700);
+}
+
+.hover\\:text-white:hover {
+    color: #ffffff;
+}
+
+.hover\\:scale-105:hover {
+    transform: scale(1.05);
+}
+
+.hover\\:bg-gray-100:hover {
+    background-color: var(--gray-100);
+}
+
+.hover\\:bg-blue-800:hover {
+    background-color: var(--blue-800);
+}
+
+.hover\\:shadow-xl:hover {
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+/* ===== FOCUS STATES ===== */
+.focus\\:ring-2:focus {
+    box-shadow: 0 0 0 2px var(--blue-600);
+}
+
+.focus\\:ring-blue-500:focus {
+    box-shadow: 0 0 0 2px var(--blue-600);
+}
+
+.focus\\:border-transparent:focus {
+    border-color: transparent;
+}
+
+/* ===== DROPDOWN ESPECÍFICO ===== */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    position: absolute;
+    right: 0;
+    margin-top: 0.5rem;
+    width: 12rem;
+    background-color: #ffffff;
+    border-radius: 0.5rem;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    padding: 0.5rem 0;
+    z-index: 10;
+}
+
+.dropdown-content a {
+    display: block;
+    padding: 0.5rem 1rem;
+    color: var(--gray-700);
+    text-decoration: none;
+}
+
+.dropdown-content a:hover {
+    background-color: var(--gray-100);
+}
+
+/* ===== MOBILE MENU ===== */
+#mobileMenu {
+    padding-bottom: 1rem;
+}
+
+#mobileMenu a {
+    display: block;
+    padding: 0.5rem 0;
+    color: var(--gray-700);
+    text-decoration: none;
+}
+
+/* ===== UTILITIES ADICIONAIS ===== */
+.w-48 {
+    width: 12rem;
+}
+
+.py-2 {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+}
+
+.px-8 {
+    padding-left: 2rem;
+    padding-right: 2rem;
+}
+
+.px-3 {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+}
+
+.mb-2 {
+    margin-bottom: 0.5rem;
+}
+
+.mb-3 {
+    margin-bottom: 0.75rem;
+}
+
+.mb-4 {
+    margin-bottom: 1rem;
+}
+
+.text-base {
+    font-size: 1rem;
+    line-height: 1.5rem;
+}
+
