@@ -146,9 +146,6 @@ if (empty($fichas_destaque)) {
                         <a href="montadoras.php" class="text-gray-700 hover:text-blue-600 transition-colors">
                             <i class="fas fa-car mr-2"></i>Montadoras
                         </a>
-                        <a href="montadoras.php" class="text-gray-700 hover:text-blue-600 transition-colors">
-                            <i class="fas fa-car mr-2"></i>Montadoras
-                        </a>
                         <a href="carrocerias.php" class="text-gray-700 hover:text-blue-600 transition-colors">
                             <i class="fas fa-shapes mr-2"></i>Carrocerias
                         </a>
