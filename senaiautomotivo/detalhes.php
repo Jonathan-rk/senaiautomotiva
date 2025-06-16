@@ -51,6 +51,17 @@ if (!$ficha) {
     <link rel="stylesheet" href="interface_style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
+<style>
+    @media (min-width: 1024px) {
+        .lg\:flex-row {
+            display: flex;
+            flex-direction: row;
+        }
+        .lg\:w-1\/2 {
+            width: 50%;
+        }
+    }
+</style>
 <body class="bg-gray-50">
     <!-- Navigation -->
     <nav class="bg-white shadow-lg sticky top-0 z-50">
@@ -116,112 +127,117 @@ if (!$ficha) {
         </div>
     </nav>
 
-    <!-- Breadcrumb -->
-    <section class="bg-gray-100 py-4">
+    <!-- Replace the Breadcrumb section with Back Button -->
+    <section class="Breadcrumb">
         <div class="max-w-7xl mx-auto px-4">
-            <nav class="flex items-center space-x-2 text-sm">
-                <a href="index.php" class="text-senai-blue hover:underline">Início</a>
-                <i class="fas fa-chevron-right text-gray-400"></i>
-                <a href="fichas.php" class="text-senai-blue hover:underline">Fichas Técnicas</a>
-                <i class="fas fa-chevron-right text-gray-400"></i>
-                <span class="text-gray-600">
-                    <?php 
-                    $marca = $ficha['marca'] ?? '';
-                    $modelo = $ficha['modelo'] ?? '';
-                    echo htmlspecialchars(trim($marca . ' ' . $modelo)); 
-                    ?>
-                </span>
-            </nav>
+            <a href="javascript:history.back()" id="backButton" class="fixed top-24 left-6 bg-senai-blue text-white w-12 h-12 flex items-center justify-center rounded-full shadow-lg hover:bg-blue-700 transition-colors z-50">
+                <i class="fas fa-arrow-left"></i>
+            </a>
         </div>
     </section>
 
-    <!-- Vehicle Header -->
-    <section class="py-8 bg-white">
-        <div class="max-w-7xl mx-auto px-4">
-            <div class="flex flex-col lg:flex-row gap-8">
-                <!-- Vehicle Image -->
-                <div class="lg:w-1/2">
-                    <div class="relative">
-                        <?php
-                        $montadoras = $ficha['montadoras_nome'] ?? '';
-                        $modelo = $ficha['modelo'] ?? '';
-                        $displayName = trim($montadoras . ' ' . $modelo);
 
-                        // Check for vehicle image first, then brand image, then fallback to placeholder
-                        if (!empty($ficha['imagem_path'])) {
-                            $imageUrl = $ficha['imagem_path'];
-                        } elseif (!empty($ficha['montadoras_imagem'])) {
-                            $imageUrl = $ficha['montadoras_imagem'];
-                        } else {
-                            $imageUrl = "https://via.placeholder.com/600x400/254AA5/ffffff?text=" . urlencode($displayName ?: 'Veículo');
-                        }
-                        ?>
-                        <img src="<?php echo htmlspecialchars($imageUrl); ?>" 
-                             alt="<?php echo htmlspecialchars($displayName ?: 'Veículo'); ?>" 
-                             class="w-full h-80 object-cover rounded-xl shadow-lg">
-                        
-                        <!-- Action Buttons -->
-                        <div class="absolute top-4 right-4 flex gap-2">
-                            <a href="gerar_pdf.php?id=<?php echo $fichaId; ?>" 
-                               target="_blank"
-                               class="px-4 py-2 bg-senai-blue text-white rounded-lg hover:bg-blue-700 transition-colors font-semibold cursor-pointer">
-                                <i class="fas fa-download mr-2"></i>PDF
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Informações básicas -->
-                <div class="lg:w-1/2">
-                    <div class="mb-6">
-                        <?php /* Removed categoria_nome section since table doesn't exist yet */ ?>
-                        
-                        <h1 class="text-4xl font-bold senai-blue mb-2">
-                            <?php echo htmlspecialchars(($ficha['montadoras_nome'] ?? '') . ' ' . ($ficha['modelo'] ?? '')); ?>
-                        </h1>
-                        
-                        <p class="text-xl text-gray-600 mb-4">
-                            <?php echo htmlspecialchars($ficha['ano'] ?? ''); ?>
-                            <?php if ($ficha['modelo'] ?? false): ?>
-                                - <?php echo htmlspecialchars($ficha['modelo']); ?>
-                            <?php endif; ?>
-                        </p>
-                    </div>
+
+  <!-- Vehicle Header -->
+<section class="py-8 bg-white">
+    <div class="max-w-7xl mx-auto px-4">
+        <div class="flex flex-col lg:flex-row gap-8">
+            <!-- Vehicle Image (Left on PC) -->
+            <div class="w-full lg:w-1/2">
+                <div class="relative">
+                    <?php
+                    $montadoras = $ficha['montadoras_nome'] ?? '';
+                    $modelo = $ficha['modelo'] ?? '';
+                    $displayName = trim($montadoras . ' ' . $modelo);
+
+                    // Check for vehicle image first, then brand image, then fallback to placeholder
+                    if (!empty($ficha['imagem_path'])) {
+                        $imageUrl = $ficha['imagem_path'];
+                    } elseif (!empty($ficha['montadoras_imagem'])) {
+                        $imageUrl = $ficha['montadoras_imagem'];
+                    } else {
+                        $imageUrl = "https://via.placeholder.com/600x400/254AA5/ffffff?text=" . urlencode($displayName ?: 'Veículo');
+                    }
+                    ?>
+                    <img src="<?php echo htmlspecialchars($imageUrl); ?>" 
+                         alt="<?php echo htmlspecialchars($displayName ?: 'Veículo'); ?>" 
+                         class="w-full h-[450px] object-cover rounded-xl shadow-lg">
                     
-                    <!-- Quick Specs -->
-                    <div class="grid grid-cols-2 gap-4 mb-6">
-                        <?php if ($ficha['identificacaomotor'] ?? false): ?>
-                            <div class="bg-gray-50 p-4 rounded-lg">
-                                <div class="text-sm text-gray-600">Motor</div>
-                                <div class="font-bold"><?php echo htmlspecialchars($ficha['identificacaomotor']); ?></div>
-                            </div>
-                        <?php endif; ?>
-                        
-                        <?php if ($ficha['potencia'] ?? false): ?>
-                            <div class="bg-gray-50 p-4 rounded-lg">
-                                <div class="text-sm text-gray-600">Potência</div>
-                                <div class="font-bold"><?php echo htmlspecialchars($ficha['potencia']); ?></div>
-                            </div>
-                        <?php endif; ?>
-                        
-                        <?php if ($ficha['cambio'] ?? false): ?>
-                            <div class="bg-gray-50 p-4 rounded-lg">
-                                <div class="text-sm text-gray-600">Câmbio</div>
-                                <div class="font-bold"><?php echo htmlspecialchars($ficha['cambio']); ?></div>
-                            </div>
-                        <?php endif; ?>
-                        
-                        <?php if ($ficha['combustivel'] ?? false): ?>
-                            <div class="bg-gray-50 p-4 rounded-lg">
-                                <div class="text-sm text-gray-600">Combustível</div>
-                                <div class="font-bold"><?php echo htmlspecialchars($ficha['combustivel']); ?></div>
-                            </div>
-                        <?php endif; ?>
+                    <!-- Action Buttons -->
+                    <div class="absolute top-4 right-4 flex gap-2">
+                        <a href="gerar_pdf.php?id=<?php echo $fichaId; ?>" 
+                           target="_blank"
+                           class="px-4 py-2 bg-senai-blue text-white rounded-lg hover:bg-blue-700 transition-colors font-semibold cursor-pointer">
+                            <i class="fas fa-download mr-2"></i>PDF
+                        </a>
                     </div>
                 </div>
             </div>
+            
+            <!-- Informações básicas (Right on PC) -->
+            <div class="w-full lg:w-1/2">
+                <div class="mb-6">
+                    <h1 class="text-4xl font-bold senai-blue mb-2">
+                        <?php echo htmlspecialchars(($ficha['montadoras_nome'] ?? '') . ' ' . ($ficha['modelo'] ?? '')); ?>
+                    </h1>
+                    
+                    <p class="text-xl text-gray-600 mb-4">
+                        <?php if ($ficha['modelo'] ?? false): ?>
+                             <?php echo htmlspecialchars($ficha['modelo']); ?>
+                        <?php endif; ?>
+                         - <?php echo htmlspecialchars($ficha['ano'] ?? ''); ?>
+                    </p>
+                </div>
+                
+                <!-- Quick Specs -->
+                <div class="grid grid-cols-2 gap-4 mb-6">
+                    <?php if ($ficha['identificacaomotor'] ?? false): ?>
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <div class="text-sm text-gray-600">Motor</div>
+                            <div class="font-bold"><?php echo htmlspecialchars($ficha['identificacaomotor']); ?></div>
+                        </div>
+                    <?php endif; ?>
+                    
+                    <?php if ($ficha['potencia'] ?? false): ?>
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <div class="text-sm text-gray-600">Potência</div>
+                            <div class="font-bold"><?php echo htmlspecialchars($ficha['potencia']); ?></div>
+                        </div>
+                    <?php endif; ?>
+
+                    <?php if ($ficha['numero_marchas'] ?? false): ?>
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <div class="text-sm text-gray-600">Número de Marchas</div>
+                            <div class="font-bold"><?php echo htmlspecialchars($ficha['numero_marchas']); ?></div>
+                        </div>
+                    <?php endif; ?>
+
+                    <?php if ($ficha['potencia'] ?? false): ?>
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <div class="text-sm text-gray-600">Potência</div>
+                            <div class="font-bold"><?php echo htmlspecialchars($ficha['potencia']); ?></div>
+                        </div>
+                    <?php endif; ?>
+                    
+                    <?php if ($ficha['cambio'] ?? false): ?>
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <div class="text-sm text-gray-600">Câmbio</div>
+                            <div class="font-bold"><?php echo htmlspecialchars($ficha['cambio']); ?></div>
+                        </div>
+                    <?php endif; ?>
+                    
+                    <?php if ($ficha['combustivel'] ?? false): ?>
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <div class="text-sm text-gray-600">Combustível</div>
+                            <div class="font-bold"><?php echo htmlspecialchars($ficha['combustivel']); ?></div>
+                        </div>
+                    <?php endif; ?>
+                </div>
+            </div>
         </div>
-    </section>
+    </div>
+</section>
+
 
     <!-- Technical Specifications -->
     <section class="py-8 bg-gray-50">
@@ -564,7 +580,9 @@ if (!$ficha) {
     <script>
         function toggleMobileMenu() {
             const menu = document.getElementById('mobileMenu');
+            const backButton = document.getElementById('backButton');
             menu.classList.toggle('hidden');
+            backButton.classList.toggle('hidden');
         }
     </script>
 </body>
