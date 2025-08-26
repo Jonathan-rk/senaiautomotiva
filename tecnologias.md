@@ -2,7 +2,7 @@
 
 ## Backend
 
-- **PHP 7.1+**
+- **PHP 8.0+**
   - PDO para acesso ao banco de dados
   - Sessões para autenticação
   - Funções utilitárias para segurança e sanitização
@@ -39,7 +39,7 @@
 
 ## Requisitos do Servidor
 
-- PHP 7.1 ou superior
+- PHP 8.0 ou superior
 - Extensões PHP: PDO, mbstring, fileinfo, etc.
 - Servidor web Apache/Nginx
 - MySQL/MariaDB
