@@ -18,6 +18,8 @@ O SENAI Automotivo é um sistema web para cadastro, consulta e gerenciamento de 
 
 ### 1. Instalação
 
+https://estudante-team-xvx59jjh.atlassian.net/wiki/external/MTMwODg3M2E5ZWZkNGMxMTgwY2E0NWQ5NWEyOGM5YTM
+
 - Clone ou extraia o projeto em seu servidor local (ex: XAMPP).
 - Crie o banco de dados usando o arquivo `database.sql`.
 - Configure o acesso ao banco em `config.php` se necessário.
