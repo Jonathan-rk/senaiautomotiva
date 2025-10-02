@@ -14,6 +14,10 @@ O SENAI Automotivo é um sistema web para cadastro, consulta e gerenciamento de 
 - Controle de acesso por usuário (login obrigatório, perfil de professor).
 - Interface responsiva e moderna.
 
+## Tutorial
+
+https://estudante-team-xvx59jjh.atlassian.net/wiki/x/HgEB
+
 ## Como Utilizar
 
 ### 1. Instalação
